@@ -1,5 +1,5 @@
 {
-  "name": "chirp-mindulness-app",
+  "name": "chirp-mindfulness-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -22,6 +22,17 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
     "globals": "^16.4.0",
-    "vite": "^7.1.7"
-  }
+    "vite": "^7.1.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rosangely-dls/Chirp-Mindfulness-app.git"
+  },
+  "author": "Rosangely De Los Santos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rosangely-dls/Chirp-Mindfulness-app/issues"
+  },
+  "homepage": "https://github.com/rosangely-dls/Chirp-Mindfulness-app#readme",
+  "description": ""
 }
