@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
+
+
+import NewEntry from './pages/NewEntry';
+import PreviousEntries from './pages/PreviousEntries';
+import AccountInfo from './pages/AccountInfo';
+import About from './pages/About';
 
 function App() {
   //State for journal entries and daily mood tracker
@@ -17,12 +24,23 @@ const handleAddEntry = () => {
   }
 };
   return (
-    
-      <div className="App">
+    <Router>
         <header className="App-header">
           <h1>Chirp: Mindfulness Journal</h1>
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/new-entry">New Entry</Link>
+            <Link to="/previous-entries">Previous Entries</Link>
+            <Link to="/account-info">Account Info</Link>
+            <Link to="/about">About</Link>
+          </nav>
         </header>
         
+
+<Routes>
+  <Route
+    path="/"
+    element={
         <main>
           <section id="journal">
             <h2>Today's Journal</h2>
@@ -56,11 +74,18 @@ const handleAddEntry = () => {
           </ul>
           </section>
         </main>
+      }
+    />
+    <Route path="/new-entry" element={<NewEntry />} />
+    <Route path="/previous-entries" element={<PreviousEntries entries={entries} />} />
+    <Route path="/account-info" element={<AccountInfo />} /> 
+    <Route path="/about" element={<About />} />
+  </Routes>
 
         <footer>
           <p>&copy; 2025 Chirp Mindfulness Journal</p>
         </footer>
-        </div>
+        </Router>
   );
 }
 
