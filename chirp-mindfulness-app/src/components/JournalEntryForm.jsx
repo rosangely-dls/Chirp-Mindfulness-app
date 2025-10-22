@@ -1,18 +1,47 @@
 import React, { useState } from 'react';
+import { addEntryWithFile } from "../api/airtable";
 
-function JournalEntryForm ({ onSubmit}) {
+async function uploadFileToCloudinary(file) {
+   const formData = new FormData();
+   formData.append('file', file);
+   formData.append('upload_preset', 'journalEntriesUpload');
+
+   const response = await fetch(`https://api.cloudinary.com/v1_1/djijclsz3/upload`, {
+    method: 'POST',
+    body: formData,
+   });
+
+   const data = await response.json();
+   return data.secure_url;
+
+}
+
+function JournalEntryForm () {
     const [entry, setEntry] = useState('');
     const [mood, setMood] = useState('');
+    const [file, setFile] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        if (!entry || !mood) {
-            alert('Please fill in all fields');
+        if (!entry || !mood || !file) {
+            alert('Please fill in all fields and select a file');
             return;
         }
-        onSubmit({ entry, mood });
+        setLoading(true);
+
+        const fileUrl = await uploadFileToCloudinary(file);
+
+        if (fileUrl) {
+            await addEntryWithFile(entry, mood, fileUrl);
+        } else {
+            alert('Failed to upload file');
+        }
+
+        setLoading(false);
         setEntry('');
         setMood('');
+        setFile(null);
     };
 
     return (
@@ -39,7 +68,10 @@ function JournalEntryForm ({ onSubmit}) {
             <option value="Angry">Angry</option>
             <option value="Grateful">Grateful</option>
            </select>
-           <button type="submit">Submit Entry</button>
+           <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+           <button type="submit" disabled={loading}>
+            {loading ? 'Submitting...' : 'Submit Entry'}
+           </button>
         </form>
     );
 }

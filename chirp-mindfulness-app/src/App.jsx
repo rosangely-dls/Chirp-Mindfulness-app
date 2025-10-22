@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 
 //import page components
-import JournalEntryForm from './components/JounralEntryForm';
+import JournalEntryForm from './components/JournalEntryForm';
 import NewEntry from './pages/NewEntry';
 import PreviousEntries from './pages/PreviousEntries';
 import AccountInfo from './pages/AccountInfo';
