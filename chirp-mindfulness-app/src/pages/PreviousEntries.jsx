@@ -16,8 +16,8 @@ function PreviousEntries() {
         <div>
             <h2>Previous Entries</h2>
             <ul>
-                {entries.map((entry, index) => (
-                    <li key={index}>
+                {entries.map((entry) => (
+                    <li key={entry.id}>
                         <strong>{entry.fields.Date} - {entry.fields.Mood}</strong><br />
                         {entry.fields.Entry}
                     </li>

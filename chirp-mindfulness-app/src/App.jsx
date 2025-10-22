@@ -4,6 +4,7 @@ import './App.css';
 
 //import page components
 import JournalEntryForm from './components/JournalEntryForm';
+import SignUpForm from './components/SignUpForm';
 import NewEntry from './pages/NewEntry';
 import PreviousEntries from './pages/PreviousEntries';
 import AccountInfo from './pages/AccountInfo';
@@ -29,6 +30,7 @@ const handleAddEntry = ({ entry, mood }) => {
           <nav className="navbar">
             <ul className="nav-list">
             <li className="nav-item"><Link to="/">Home</Link></li>
+            <li className="nav-item"><Link to="/signup">Sign Up</Link></li>
             <li className="nav-item"><Link to="/previous-entries">Previous Entries</Link></li>
             <li className="nav-item"><Link to="/account-info">Account Info</Link></li>
             <li className="nav-item"><Link to="/about">About</Link></li>
@@ -52,6 +54,7 @@ const handleAddEntry = ({ entry, mood }) => {
     <Route path="/previous-entries" element={<PreviousEntries entries={entries} />} />
     <Route path="/account-info" element={<AccountInfo />} /> 
     <Route path="/about" element={<About />} />
+    <Route path="/signup" element={<SignUpForm />} />
   </Routes>
 
         <footer>
