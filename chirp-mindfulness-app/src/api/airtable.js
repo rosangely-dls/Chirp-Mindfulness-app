@@ -23,6 +23,7 @@ export const addEntryWithFile = async (entry, mood, fileUrl) => {
         fields: {
             Entry: entry,
             Mood: mood,
+            Date: Date,
             Attachments: [{ url: fileUrl }],
         },
     };
@@ -32,5 +33,6 @@ export const addEntryWithFile = async (entry, mood, fileUrl) => {
         return response.data;
     } catch (error) {
         console.error('Error adding entry:', error);
+        return null;
     }
 };

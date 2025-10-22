@@ -16,7 +16,7 @@ async function uploadFileToCloudinary(file) {
 
 }
 
-function JournalEntryForm () {
+function JournalEntryForm ({ onSubmit }) {
     const [entry, setEntry] = useState('');
     const [mood, setMood] = useState('');
     const [file, setFile] = useState(null);
@@ -33,7 +33,9 @@ function JournalEntryForm () {
         const fileUrl = await uploadFileToCloudinary(file);
 
         if (fileUrl) {
-            await addEntryWithFile(entry, mood, fileUrl);
+            const today = new Date().toISOString().split('T')[0];
+            await addEntryWithFile(entry, mood, fileUrl, today);
+            onSubmit({ entry, mood, date: today });
         } else {
             alert('Failed to upload file');
         }
